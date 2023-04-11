@@ -2,7 +2,7 @@ module go-todo
 
 go 1.19
 
-require gorm.io/gorm v1.24.6
+require gorm.io/gorm v1.24.7-0.20230306060331-85eaf9eeda11
 
 require github.com/go-sql-driver/mysql v1.7.0 // indirect
 
@@ -33,5 +33,5 @@ require (
 	golang.org/x/text v0.8.0 // indirect
 	google.golang.org/protobuf v1.30.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
-	gorm.io/driver/mysql v1.4.7
+	gorm.io/driver/mysql v1.5.0
 )
