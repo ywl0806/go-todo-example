@@ -7,9 +7,10 @@ import (
 )
 
 func SetupRouter() *gin.Engine {
-	router := gin.Default()
+	r := gin.Default()
+	todoRepo := controllers.New()
+	r.GET("/todos", todoRepo.GetTodos)
+	r.POST("/todo", todoRepo.CreateTodo)
 
-	router.GET("/", controllers.GetTodos)
-
-	return router
+	return r
 }

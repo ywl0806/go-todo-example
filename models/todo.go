@@ -21,3 +21,11 @@ func CreateTodo(db *gorm.DB, Todo *Todo) (err error) {
 	}
 	return nil
 }
+
+func GetTodos(db *gorm.DB, Todo *[]Todo) (err error) {
+	err = db.Find(Todo).Error
+	if err != nil {
+		return err
+	}
+	return nil
+}
