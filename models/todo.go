@@ -9,8 +9,8 @@ import (
 type Todo struct {
 	gorm.Model
 	Title       string `gorm:"not null"`
-	Discription string
-	IsActive    bool `gorm:"not null"`
+	Discription string `gorm:"not null"`
+	IsActive    bool   `gorm:"not null"`
 	Deadline    time.Time
 }
 
