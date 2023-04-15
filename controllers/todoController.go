@@ -1,10 +1,10 @@
 package controllers
 
 import (
+	"fmt"
 	"go-todo/database"
 	"go-todo/models"
 	"net/http"
-	"time"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
@@ -32,14 +32,17 @@ func (repository *TodoRepo) GetTodos(c *gin.Context) {
 	c.JSON(http.StatusOK, todos)
 }
 
+type CreateTodoDto struct {
+	Title       string `json:"title" binding:"required"`
+	Description string `json:"description" binding:"required"`
+}
+
 func (repository *TodoRepo) CreateTodo(c *gin.Context) {
-
-	var todo models.Todo
-	todo.Title = "title1"
-	todo.Discription = "discription"
-	todo.IsActive = true
-	todo.Deadline = time.Now()
-
-	models.CreateTodo(repository.Db, &todo)
+	var dto CreateTodoDto
+	err := c.BindJSON(&dto)
+	fmt.Println(err)
+	fmt.Println(dto)
+	// var todo models.Todo
+	// models.CreateTodo(repository.Db, &todo)
 	c.JSON(http.StatusOK, gin.H{"message": "OK!"})
 }
