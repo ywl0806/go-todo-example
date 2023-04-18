@@ -1,8 +1,6 @@
 package controllers
 
 import (
-	"fmt"
-	"go-todo/database"
 	"go-todo/models"
 	"net/http"
 
@@ -14,8 +12,8 @@ type TodoRepo struct {
 	Db *gorm.DB
 }
 
-func New() *TodoRepo {
-	db := database.InitDb()
+func NewTodoRepo(db *gorm.DB) *TodoRepo {
+
 	db.AutoMigrate(&models.Todo{})
 	return &TodoRepo{Db: db}
 }
@@ -32,17 +30,11 @@ func (repository *TodoRepo) GetTodos(c *gin.Context) {
 	c.JSON(http.StatusOK, todos)
 }
 
-type CreateTodoDto struct {
-	Title       string `json:"title" binding:"required"`
-	Description string `json:"description" binding:"required"`
+func (repository *TodoRepo) CreateTodo(c *gin.Context) {
+
+	c.JSON(http.StatusOK, gin.H{"message": "OK!"})
 }
 
-func (repository *TodoRepo) CreateTodo(c *gin.Context) {
-	var dto CreateTodoDto
-	err := c.BindJSON(&dto)
-	fmt.Println(err)
-	fmt.Println(dto)
-	// var todo models.Todo
-	// models.CreateTodo(repository.Db, &todo)
-	c.JSON(http.StatusOK, gin.H{"message": "OK!"})
+func (repository *TodoRepo) UpdateTodo(c *gin.Context) {
+
 }
