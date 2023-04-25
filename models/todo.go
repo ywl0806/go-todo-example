@@ -9,12 +9,13 @@ import (
 type Todo struct {
 	gorm.Model
 	Title       string    `gorm:"not null" json:"title"`
-	Description string    `gorm:"not null" json:"descriptioin"`
+	Description string    `gorm:"not null" json:"description"`
 	IsActive    bool      `gorm:"not null" json:"isActive"`
 	Deadline    time.Time `gorm:"type:datetime;default:CURRENT_TIMESTAMP" json:"deadLine"`
 }
 
 func CreateTodo(db *gorm.DB, Todo *Todo) (err error) {
+
 	err = db.Create(Todo).Error
 	if err != nil {
 		return err

@@ -31,7 +31,11 @@ func (repository *TodoRepo) GetTodos(c *gin.Context) {
 }
 
 func (repository *TodoRepo) CreateTodo(c *gin.Context) {
+	var todo models.Todo
 
+	c.BindJSON(&todo)
+
+	models.CreateTodo(repository.Db, &todo)
 	c.JSON(http.StatusOK, gin.H{"message": "OK!"})
 }
 
